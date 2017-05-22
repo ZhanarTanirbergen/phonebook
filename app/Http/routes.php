@@ -15,12 +15,10 @@ $app->get('/', function() use ($app) {
     return $app->welcome();
 });
 
-$app->post('/register', ['uses' => 'App\Http\Controllers\AuthController@postRegister']);
-$app->post('/login', ['uses'    => 'App\Http\Controllers\AuthController@postLogin']);
-
-$app->get('/post/{id}', ['uses' => 'App\Http\Controllers\PostsController@show']);
-$app->get('/post',      ['uses' => 'App\Http\Controllers\PostsController@index']);
-$app->group(['middleware' => 'logged.in'], function($app) {
-    $app->post('/post',     ['uses' => 'App\Http\Controllers\PostsController@store']);
-    /** & another protected routes */
-});
+$app->get('/phones',      ['uses' => 'App\Http\Controllers\PhonesController@index']);
+$app->get('/phones/s:{search}',      ['uses' => 'App\Http\Controllers\PhonesController@search']);
+$app->get('/phones/o:{search}',      ['uses' => 'App\Http\Controllers\PhonesController@orderBy']);
+$app->get('/phones/{id}-',     ['uses' => 'App\Http\Controllers\PhonesController@delete']);
+$app->get('/phones/{id}', ['uses' => 'App\Http\Controllers\PhonesController@read']);
+$app->post('/phones',     ['uses' => 'App\Http\Controllers\PhonesController@create']);
+$app->post('/phones/{id}',     ['uses' => 'App\Http\Controllers\PhonesController@update']);

@@ -9,12 +9,9 @@ class Controller extends BaseController
      * @param string $message
      * @return \Illuminate\Http\Response
      */
-    protected function respondWithSuccess($message = '', $data = [])
+    protected function respondWithData($data = [])
     {
-        return new Response(json_encode([
-            'message' => $message,
-            'data'    => $data
-        ]), 200);
+        return new Response(json_encode($data), 200);
     }
 
     /**
